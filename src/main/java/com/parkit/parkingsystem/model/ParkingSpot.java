@@ -2,7 +2,16 @@ package com.parkit.parkingsystem.model;
 
 import com.parkit.parkingsystem.constants.ParkingType;
 
+import lombok.Data;
+import javax.persistence.*;
+import javax.persistence.*;
+import javax.persistence.*;
+
+
+
 public class ParkingSpot {
+
+
     private int number;
     private ParkingType parkingType;
     private boolean isAvailable;

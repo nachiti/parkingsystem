@@ -3,8 +3,22 @@ package com.parkit.parkingsystem.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.annotation.processing.Generated;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+//@Entity
+//@Table(name="ticket")
 public class Ticket {
-    private int id;
+	
+//	@Id
+//	@GeneratedValue(strategy  = GenerationType.IDENTITY)
+	private int id;
     private ParkingSpot parkingSpot;
     private String vehicleRegNumber;
     private double price;
