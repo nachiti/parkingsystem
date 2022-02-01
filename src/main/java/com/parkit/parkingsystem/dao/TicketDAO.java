@@ -58,6 +58,7 @@ public class TicketDAO {
                 ticket.setPrice(rs.getDouble(3));
                 ticket.setInTime(rs.getTimestamp(4));
                 ticket.setOutTime(rs.getTimestamp(5));
+                ticket.setAlreadyCame(isAlreadyCame(vehicleRegNumber));
             }
             dataBaseConfig.closeResultSet(rs);
             dataBaseConfig.closePreparedStatement(ps);
@@ -67,6 +68,10 @@ public class TicketDAO {
             dataBaseConfig.closeConnection(con);
             return ticket;
         }
+    }
+    
+    private boolean isAlreadyCame(String vehicleRegNumber) {
+    	return false;
     }
 
     public boolean updateTicket(Ticket ticket) {

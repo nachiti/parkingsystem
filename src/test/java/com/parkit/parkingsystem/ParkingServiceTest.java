@@ -22,7 +22,6 @@ import static org.mockito.Mockito.*;
 public class ParkingServiceTest {
 
     private static ParkingService parkingService;
-
     @Mock
     private static InputReaderUtil inputReaderUtil;
     @Mock
@@ -30,12 +29,15 @@ public class ParkingServiceTest {
     @Mock
     private static TicketDAO ticketDAO;
 
-    @BeforeEach
+    
+    @BeforeEach 
     private void setUpPerTest() {
         try {
+        	when(inputReaderUtil.readSelection()).thenReturn(1);
             when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
-
+            
             ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
+            
             Ticket ticket = new Ticket();
             ticket.setInTime(new Date(System.currentTimeMillis() - (60*60*1000)));
             ticket.setParkingSpot(parkingSpot);
@@ -55,8 +57,17 @@ public class ParkingServiceTest {
 
     @Test
     public void processExitingVehicleTest(){
+    	System.out.println("processExitingVehicleTest 1");
+    	//Given prépare les conditions du tests (prépare les paramètres, configure les mocks)
+    	 setUpPerTest() ;
+    	//When on execute le code qu'on veut tester
         parkingService.processExitingVehicle();
+         
+    	//Then on vérifie que le code a bien fait ce qu'on voulait que ça fasse
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
+        verify(ticketDAO, Mockito.times(1)).updateTicket(any(Ticket.class));
+        System.out.println("processExitingVehicleTest 2");
+      
     }
 
 }
